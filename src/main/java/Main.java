@@ -42,13 +42,13 @@ public class Main {
         String weatherBotAPI = properties.getProperty("WeatherBotAPI");
 
         RollerBot rollerBot = new RollerBot(rollerBotAPI);
-        WeatherBot weatherBot = null;
-        weatherBot = new WeatherBot(weatherBotAPI);
+        //WeatherBot weatherBot = null;
+        //weatherBot = new WeatherBot(weatherBotAPI);
         try {
             System.out.println("Я СЕЙЧАС УПАДУ!");
 
             botsApi.registerBot(rollerBot);
-            botsApi.registerBot(weatherBot);
+            //botsApi.registerBot(weatherBot);
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
