@@ -1,8 +1,8 @@
 package telegrambot.bot.rollerbot;
 
 import telegrambot.utils.roll.DiceRoller;
-import telegrambot.utils.Result;
-import telegrambot.utils.roll.RollResult;
+import telegrambot.common.results.Result;
+import telegrambot.common.results.RollResult;
 
 /**
  * Created by atols on 25.07.2017.

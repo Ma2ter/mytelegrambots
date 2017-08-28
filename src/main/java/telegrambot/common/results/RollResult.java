@@ -1,6 +1,4 @@
-package telegrambot.utils.roll;
-
-import telegrambot.utils.Result;
+package telegrambot.common.results;
 
 /**
  * Created by atols on 27.07.2017.

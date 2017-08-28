@@ -35,8 +35,7 @@ public class Main {
         DefaultBotOptions options = ApiContext.getInstance(DefaultBotOptions.class);
 
         RollerBot rollerBot = new RollerBot(rollerBotAPI);
-        //WeatherBot weatherBot = null;
-        //weatherBot = new WeatherBot(weatherBotAPI);
+        //WeatherBot weatherBot = new WeatherBot(weatherBotAPI);
         try {
             botsApi.registerBot(rollerBot);
             //botsApi.registerBot(weatherBot);
