@@ -10,7 +10,7 @@ public class ResultHandler {
      * Created by atols on 25.08.2017.
      */
 
-    private BaseBot sender;
+    private final BaseBot sender;
 
     private ResultHandler(BaseBot sender){
         this.sender = sender;

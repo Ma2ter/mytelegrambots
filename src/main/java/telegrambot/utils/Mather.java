@@ -2,6 +2,8 @@ package telegrambot.utils;
 
 /**
  * Created by atols on 25.07.2017.
+ * Класс, взятый из открытых источников с сайта stackoverflow (без указания автора)
+ * Осуществляет вычисление математических выражений
  */
 public class Mather {
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by atols on 28.07.2017.
+ * POJO for parsing from JSON via JACKSON
  */
 public class ForecastResult extends Result {
 

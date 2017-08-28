@@ -3,7 +3,7 @@ package telegrambot.common.entities;
 /**
  * Created by atols on 27.07.2017.
  */
-public class Weather {
+class Weather {
     @Override
     public String toString() {
         return "Weather{" +

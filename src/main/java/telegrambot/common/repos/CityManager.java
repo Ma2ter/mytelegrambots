@@ -12,12 +12,16 @@ import java.util.stream.Collectors;
 
 /**
  * Created by atols on 27.07.2017.
+ * Класс-репозиторий, осуществляющий загрузку списка городов и реализующий методы обращения с ними.
  */
 public class CityManager {
 
+    //Instance of singleton
     private static CityManager cityManager;
+    //List of cities
     private List<City> cities;
 
+    //Фабричный метод получения ссылки на экземпляр singleton'а
     public static CityManager getInstance(){
         if(cityManager == null){
             cityManager = new CityManager();
@@ -25,6 +29,7 @@ public class CityManager {
         return cityManager;
     }
 
+    //Constructors, getters, setters, Override methods
     private CityManager(){
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("file/city.list.json").getFile());
@@ -36,17 +41,17 @@ public class CityManager {
         }
     }
 
+
+    /*Поиск города по названию
+    Input:
+        String name - наименование города (пример: Moscow)
+    Output:
+        List<City> - Список сущностей City - результатов поиска
+     */
+
     public List<City> findCitiesByName(String name){
 
         return cities.stream().filter(city -> city.getName().contains(name)).collect(Collectors.toList());
     }
 
-    public static void main(String[] arsg){
-
-        CityManager cityManager = new CityManager();
-        List<City> moscow = cityManager.findCitiesByName("Moscow");
-        for(City c: moscow){
-            System.out.println(c);
-        }
-    }
 }
