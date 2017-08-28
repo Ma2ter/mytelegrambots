@@ -2,13 +2,20 @@ package telegrambot.common.results;
 
 /**
  * Created by atols on 27.07.2017.
+ * Contains result of dice roll by DiceRoller.class
+ *
  */
 public class RollResult extends Result {
 
+    //Запрос пользователя (пример <2d6 + 17>)
     private String query;
+    //Описывает шаги, пройденные системой для поиска ответа на запрос
     private String solution;
+    //Содержит фактический конечный результат выполнения программы
     private String result;
 
+
+    //Constructor, getters, setters, Override methods
     public RollResult() {
     }
 
@@ -21,7 +28,7 @@ public class RollResult extends Result {
         return query;
     }
 
-    public void setQuery(String query) {
+    private void setQuery(String query) {
         this.query = query;
     }
 
@@ -29,7 +36,7 @@ public class RollResult extends Result {
         return solution;
     }
 
-    public void setSolution(String solution) {
+    private void setSolution(String solution) {
         this.solution = solution;
     }
 
@@ -46,6 +53,9 @@ public class RollResult extends Result {
         return solution;
     }
 
+    /*
+    Builder для касса RollResult. Содержит методы для упрощенного создания экземпляра RollResult
+     */
     public class RollResultBuilder{
 
         private String builderQuery;

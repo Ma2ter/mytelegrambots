@@ -1,28 +1,34 @@
 package telegrambot.bot;
 
-import org.glassfish.grizzly.compression.lzma.impl.Base;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.generics.LongPollingBot;
-import telegrambot.bot.api.Request;
+import telegrambot.core.api.Request;
 import telegrambot.common.reflection.ControllerHandler;
 
 /**
  * Created by atols on 25.08.2017.
+ * Абстрактная сущность бота на основе TelegramLongPollingBot'ов
+ * Классы-предки реализуют методы getBotUsername() и onClosing()
+ * API-токен передается в конструктор из конструктора класса-предка
+ *
  */
 public abstract class BaseBot extends TelegramLongPollingBot {
 
-    protected final String API;
-    private ControllerHandler controllerHandler = ControllerHandler.getInstance();
+    //API-токен бота
+    private final String API;
+    //Экземпляр-singleton класса-обработчика запросов.
+    private final ControllerHandler controllerHandler = ControllerHandler.getInstance();
 
 
-    public BaseBot(String API){
-        this.API = API;
-    }
 
     @Override
     public void onUpdateReceived(Update update) {
+        //Отправка экземпляра запроса (контекста) в экземпляр-обработчик
         controllerHandler.resolveQuery(new Request(update, this));
+    }
+
+    protected BaseBot(String API){
+        this.API = API;
     }
 
     @Override

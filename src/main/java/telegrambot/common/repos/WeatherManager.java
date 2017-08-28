@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 /**
  * Created by atols on 27.07.2017.
  */
+@SuppressWarnings("ALL")
 public class WeatherManager {
 
     private final static String weatherWebAddress;
@@ -76,6 +77,7 @@ public class WeatherManager {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public WeatherManager(){
 
     }
@@ -94,11 +96,13 @@ public class WeatherManager {
         return null;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public WeatherResult getCurrentWeatherByCityId(Integer cityId){
         String query = new QueryBuilder().setType(CURRENT).setCityId(cityId).build();
         return (WeatherResult) processQuery(query, new WeatherResult());
     }
 
+    @SuppressWarnings("WeakerAccess")
     public ForecastResult getForecastHourlyByCityId(Integer cityId){
         return (ForecastResult) processQuery(
                 new QueryBuilder().setCityId(cityId).setType(FORECAST).build(),
