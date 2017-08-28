@@ -1,21 +1,13 @@
 package telegrambot.bot.weatherbot;
 
 import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.File;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import telegrambot.bot.UpdateQuery;
-import telegrambot.bot.api.Handler;
 import telegrambot.common.entities.City;
-import telegrambot.common.entities.Sys;
 import telegrambot.common.repos.CityManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.*;
 
 /**

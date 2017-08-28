@@ -7,11 +7,11 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.inlinequery.InlineQuery;
 import org.telegram.telegrambots.api.objects.inlinequery.inputmessagecontent.InputTextMessageContent;
 import org.telegram.telegrambots.api.objects.inlinequery.result.InlineQueryResultArticle;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import telegrambot.bot.UpdateQuery;
+import telegrambot.bot.BaseBot;
+import telegrambot.bot.api.Request;
+import telegrambot.common.results.RollResult;
 import telegrambot.utils.roll.DiceRoller;
-import telegrambot.utils.roll.RollResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,30 +20,28 @@ import java.util.List;
 /**
  * Created by atols on 25.07.2017.
  */
-public class RollerBot extends TelegramLongPollingBot {
+public class RollerBot extends BaseBot {
 
 
     private static final String cmd_start = "/start";
     private static final String cmd_stop = "/stop";
     private static final String cmd_roll = "/roll";
     private static final String cmd_rollInfo = "/rolli";
-    private final String API;
     private List<String> commands;
 
     public RollerBot(String API){
-        this.API = API;
+        super(API);
         commands = new ArrayList<>();
         commands.addAll(Arrays.asList(cmd_roll, cmd_start, cmd_stop));
     }
 
-
-
-
-
-    @Override
+    /*@Override
     public void onUpdateReceived(Update update) {
-        UpdateQuery query = new UpdateQuery(update);
-        UpdateQuery.QueryType type = query.getType();
+
+        //
+
+        Request query = new Request(update);
+        Request.QueryType type = query.getType();
         SendMessage sendMessage = null;
     switch (type){
         case COMMAND:
@@ -78,18 +76,14 @@ public class RollerBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
     public String getBotUsername() {
-        return "Dice Roller";
+        return "M2RollerBot";
     }
 
     public void onClosing() {
 
-    }
-
-    public String getBotToken() {
-        return API;
     }
 
     private String processQuery(String query){

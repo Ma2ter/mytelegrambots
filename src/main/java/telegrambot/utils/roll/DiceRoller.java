@@ -1,5 +1,6 @@
 package telegrambot.utils.roll;
 
+import telegrambot.common.results.RollResult;
 import telegrambot.utils.Mather;
 
 import java.util.*;
@@ -9,21 +10,14 @@ import java.util.*;
  */
 public class DiceRoller {
 
-    private final String VALIDATION_REGEXP = "^([-+/*]\\d+(\\.\\d+)?)*";
-    private Map<Integer, List<String>> enclosedArgs = new HashMap<>();
-    private List<String> params = new ArrayList<>();
 
-    public static RollResult roll(String input, boolean additionalInfo) throws Exception{
-        return new DiceRoller().resolveRoll(input, additionalInfo);
+    public static RollResult roll(String input, boolean additionalInfo) {
+        try {
+            return new DiceRoller().resolveRoll(input, additionalInfo);
+        } catch (Exception e) {
+            return new RollResult(e.getMessage());
+        }
     }
-
-    private int findNextRoundBracket(String s, int from){
-
-
-
-        return 0;
-    }
-
 
     private RollResult resolveRoll(String input, boolean additionalInfo) throws Exception {
         String result = input;
