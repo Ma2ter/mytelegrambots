@@ -8,6 +8,8 @@ import telegrambot.core.api.Request;
 import telegrambot.common.results.Result;
 import telegrambot.common.results.ResultHandler;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
  */
 public class ControllerHandler {
 
-    //Перечень классов-контроллеров, по умолчанию - из пакета telegrambot.core.controllers
+    //Перечень классов-контроллеров, по умолчанию - из пакета telegrambot.core.controllers, свойство *.properties - controllers_package
     private static Set<Class<?>> controllers;
     //Ссылка на экземпляр
     private static ControllerHandler instance = null;
@@ -61,6 +63,10 @@ public class ControllerHandler {
                     })
                     .forEach(methods::add);
         });
+        if(methods.size() == 0){
+            System.out.println();
+            throw new RuntimeException("NO FILE FOUND");
+        }
         //Invoking all valid methods and sending result to Users
         methods.sort(Comparator.comparingInt(e2 -> e2.getAnnotation(M2RBotCommand.class).priority()));
         for (Method method : methods) {
@@ -75,7 +81,15 @@ public class ControllerHandler {
 
     //Constructors, getters, setters, Override methods
     private ControllerHandler() {
-        Reflections reflections = new Reflections("telegrambot.core.controllers");
+        InputStream controolersFolderStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("app.properties");
+        Properties properties = new Properties();
+        try {
+            properties.load(controolersFolderStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String controllersFolder = properties.getProperty("controllers_package");
+        Reflections reflections = new Reflections(controllersFolder);
         controllers = reflections.getTypesAnnotatedWith(M2RController.class);
     }
 

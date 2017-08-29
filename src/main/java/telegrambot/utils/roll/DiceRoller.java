@@ -35,8 +35,8 @@ public class DiceRoller {
             if(result.charAt(i) == 'd') {
                 int j = i;
                 int minBorder = 1;
-                int leftBorder = 0;
-                int rightBorder = 0;
+                int leftBorder;
+                int rightBorder;
                 //Определение числа "слева" от 'd'
                 while (--j > 0 && result.charAt(j - 1) >= '0' && result.charAt(j - 1) <= '9') ;
                 Integer leftParam = Integer.parseInt((i - j - 1 > 0) ? result.substring(j, i) : String.valueOf(result.charAt(j)));

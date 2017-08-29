@@ -2,6 +2,8 @@ package telegrambot.common.entities;
 
 /**
  * Created by atols on 27.07.2017.
+ * POJO for parsing from JSON via JACKSON
+ *
  */
 public class Temperature {
 

@@ -24,7 +24,11 @@ public abstract class BaseBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         //Отправка экземпляра запроса (контекста) в экземпляр-обработчик
-        controllerHandler.resolveQuery(new Request(update, this));
+        try {
+            controllerHandler.resolveQuery(new Request(update, this));
+        } catch (RuntimeException e){
+            e.printStackTrace();
+        }
     }
 
     protected BaseBot(String API){

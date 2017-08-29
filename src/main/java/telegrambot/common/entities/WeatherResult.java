@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by atols on 27.07.2017.
+ * Содержит результаты выполнения запроса по работе с погодой
  */
 public class WeatherResult extends Result{
 
