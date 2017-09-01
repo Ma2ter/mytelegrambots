@@ -1,6 +1,8 @@
 package telegrambot.core.api;
 
+import org.glassfish.grizzly.compression.lzma.impl.Base;
 import org.telegram.telegrambots.generics.LongPollingBot;
+import telegrambot.bot.BaseBot;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,7 +18,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface M2RController {
 
-    Class[] includeBots() default LongPollingBot.class;
+    Class[] includeBots() default BaseBot.class;
 
 
 }

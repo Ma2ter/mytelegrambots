@@ -1,6 +1,5 @@
 package telegrambot.utils.roll;
 
-import telegrambot.common.results.RollResult;
 import telegrambot.utils.Mather;
 
 import java.util.*;
@@ -22,7 +21,7 @@ public class DiceRoller {
         try {
             return new DiceRoller().resolveRoll(input, additionalInfo);
         } catch (Exception e) {
-            return new RollResult(e.getMessage());
+            return new RollResult().new RollResultBuilder().setResult(e.getMessage()).build();
         }
     }
 

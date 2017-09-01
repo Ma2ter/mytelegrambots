@@ -3,7 +3,9 @@ package telegrambot.core.api;
 import org.telegram.telegrambots.api.objects.Update;
 import telegrambot.bot.BaseBot;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 
@@ -14,8 +16,6 @@ import java.util.Map;
 public class Request {
 
     private final QueryType queryType;
-    //Бот, инициализирующий запрос
-    private final BaseBot sender;
     //Запрос пользователя
     private final Update queryContext;
 
@@ -27,8 +27,7 @@ public class Request {
     private final Map<String, Object> model = new Hashtable<>();
 
     //Constructors, getters, setters, Override methods
-    public Request(Update query, BaseBot sender){
-        this.sender = sender;
+    public Request(Update query){
         this.queryContext = query;
         //TODO:Encapsulate hardcoded transformation to factory
         if(query.hasInlineQuery()) queryType = QueryType.INLINE;
@@ -43,6 +42,8 @@ public class Request {
 
     }
 
+    public Long getChatId(){return queryContext.getMessage().getChatId();}
+
     public String getCommand() {
         return model.get(COMMAND).toString();
     }
@@ -56,9 +57,6 @@ public class Request {
         return model.get(STRING_VALUE).toString();
     }
 
-    public BaseBot getSender(){
-        return sender;
-    }
 
     public QueryType getType(){
         return queryType;
