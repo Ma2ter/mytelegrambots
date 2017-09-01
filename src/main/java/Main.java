@@ -3,6 +3,7 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
+import telegrambot.bot.chatutilsbot.ChatUtilsBot;
 import telegrambot.bot.rollerbot.RollerBot;
 
 import java.io.IOException;
@@ -25,13 +26,16 @@ class Main {
         }
         String rollerBotAPI = properties.getProperty("RollerBotAPI");
         String weatherBotAPI = properties.getProperty("WeatherBotAPI");
+        String chatUtilsBotAPI = properties.getProperty("ChatUtilsBotAPI");
 
         DefaultBotOptions options = ApiContext.getInstance(DefaultBotOptions.class);
 
         RollerBot rollerBot = new RollerBot(rollerBotAPI);
+        ChatUtilsBot chatUtilsBot = new ChatUtilsBot(chatUtilsBotAPI);
         //WeatherBot weatherBot = new WeatherBot(weatherBotAPI);
         try {
-            botsApi.registerBot(rollerBot);
+            //botsApi.registerBot(rollerBot);
+            botsApi.registerBot(chatUtilsBot);
             //botsApi.registerBot(weatherBot);
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();

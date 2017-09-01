@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface M2RBotCommand {
 
-    String pattern() default "*";
+    String pattern() default ".*";
     Request.QueryType[] types() default {Request.QueryType.COMMAND};
     int priority() default 1;
 

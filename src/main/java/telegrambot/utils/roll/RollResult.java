@@ -1,11 +1,11 @@
-package telegrambot.common.results;
+package telegrambot.utils.roll;
 
 /**
  * Created by atols on 27.07.2017.
  * Contains result of dice roll by DiceRoller.class
  *
  */
-public class RollResult extends Result {
+public class RollResult {
 
     //Запрос пользователя (пример <2d6 + 17>)
     private String query;
@@ -19,16 +19,11 @@ public class RollResult extends Result {
     public RollResult() {
     }
 
-    public RollResult(String message) {
-        super(message);
-        this.solution = message;
-    }
-
     public String getQuery() {
         return query;
     }
 
-    private void setQuery(String query) {
+    public void setQuery(String query) {
         this.query = query;
     }
 
@@ -36,7 +31,7 @@ public class RollResult extends Result {
         return solution;
     }
 
-    private void setSolution(String solution) {
+    public void setSolution(String solution) {
         this.solution = solution;
     }
 
@@ -48,19 +43,14 @@ public class RollResult extends Result {
         this.result = result;
     }
 
-    @Override
-    public String toString() {
-        return solution;
-    }
-
     /*
     Builder для касса RollResult. Содержит методы для упрощенного создания экземпляра RollResult
      */
     public class RollResultBuilder{
 
-        private String builderQuery;
-        private String builderSolution;
-        private String builderResult;
+        private String builderQuery = "";
+        private String builderSolution = "";
+        private String builderResult = "";
 
 
         public RollResultBuilder setQuery(String builderQuery) {
@@ -79,7 +69,7 @@ public class RollResult extends Result {
         }
 
         public RollResult build(){
-            RollResult result = new RollResult("New");
+            RollResult result = new RollResult();
             result.setQuery(builderQuery);
             result.setResult(builderResult);
             result.setSolution(builderSolution);

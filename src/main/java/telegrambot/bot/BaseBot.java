@@ -1,5 +1,8 @@
 package telegrambot.bot;
 
+import org.telegram.telegrambots.api.methods.send.SendAudio;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Audio;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import telegrambot.core.api.Request;
@@ -24,11 +27,7 @@ public abstract class BaseBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         //Отправка экземпляра запроса (контекста) в экземпляр-обработчик
-        try {
-            controllerHandler.resolveQuery(new Request(update, this));
-        } catch (RuntimeException e){
-            e.printStackTrace();
-        }
+        controllerHandler.resolveQuery(update, this);
     }
 
     protected BaseBot(String API){
